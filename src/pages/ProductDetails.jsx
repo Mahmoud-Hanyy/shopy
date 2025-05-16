@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 
+
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 function ProductDetails() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
     axios
-      .get(`https://dummyjson.com/products/${id}`)
+      .get(`${BASE_URL}/products/${id}`)
       .then((res) => setProduct(res.data))
       .catch((err) => console.error(err));
   }, [id]);
