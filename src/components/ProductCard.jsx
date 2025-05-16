@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../app/CartSlice";
 
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 function ProductCard({ product }) {
   const dispatch = useDispatch();
   return (
@@ -18,7 +19,7 @@ function ProductCard({ product }) {
         <p className="card-text text-truncate">{product.description}</p>
         <div className="mt-auto">
           <p className="fw-bold">${product.price}</p>
-          <Link to={`/product/${product.id}`} className="btn btn-primary w-100 mb-3">
+          <Link to={`${BASE_URL}/products/${product.id}`} className="btn btn-primary w-100 mb-3">
             View Details
           </Link>
           <button
