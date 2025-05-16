@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../app/CartSlice';
+
 
 function ProductCard({ product }) {
+    const dispatch = useDispatch();
     return (
         <div className="card h-100">
             <img src={product.thumbnail} className="card-img-top" alt={product.title} style={{ height: '200px', objectFit: 'cover' }} />
@@ -11,6 +15,13 @@ function ProductCard({ product }) {
                 <div className="mt-auto">
                     <p className="fw-bold">${product.price}</p>
                     <Link to={`/product/${product.id}`} className="btn btn-primary w-100">View Details</Link>
+                    <br/>
+                    <button
+                        className="btn btn-success w-100"
+                        onClick={() => dispatch(addToCart(product))}
+                    >
+                        Add to Cart
+                    </button>
                 </div>
             </div>
         </div>
